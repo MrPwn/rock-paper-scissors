@@ -65,8 +65,10 @@ function game() {
 
     if (playerWins > computerWins) {
         return console.log('You are the Rock Paper Scissors ULTIMATE CHAMPION!');
-    } else {
+    } else if (playerWins < computerWins) {
         return console.log('You are terrible! Try again next time.');
+    } else {
+        return console.log('Well would you look at what we have here! It\'s a tie.');
     }
 }
 
