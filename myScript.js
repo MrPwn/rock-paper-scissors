@@ -51,18 +51,22 @@ function game() {
     let computerWins = 0;
 
     for (let i = 0; i < 5; i++){
+        let playerSelection = prompt('What\'s your selection?');
         let winner = playRound(playerSelection, getComputerChoice());
+
+        console.log(winner);
+
         if (winner.substr(0,7) === 'You Win') {
             playerWins++;
-        } else {
+        } else if (winner.substr(0,8) === 'You Lose'){
             computerWins++;
         }
     }
 
     if (playerWins > computerWins) {
-        return 'You are the Rock Paper Scissors ULTIMATE CHAMPION!';
+        return console.log('You are the Rock Paper Scissors ULTIMATE CHAMPION!');
     } else {
-        return 'You are terrible! Try again next time.'
+        return console.log('You are terrible! Try again next time.');
     }
 }
 
