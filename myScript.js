@@ -18,7 +18,7 @@ function playSingleRound(playerSelection, computerSelection) {
     let winMessage = '';
 
     if (computerSelection === playerLower) {
-        return winMessage = 'It\'s a tie!';
+        return winMessage = 'Play again, it\'s a tie!';
     }
     
     switch (computerSelection) {
@@ -36,9 +36,15 @@ function playSingleRound(playerSelection, computerSelection) {
             break;
     }
     
-    console.log(computerSelection);
-    console.log(winMessage);
+    let playerProper = (playerLower.substr(0,1)).toUpperCase() + playerLower.substr(1);
+    let computerProper = (computerSelection.substr(0,1)).toUpperCase() + computerSelection.substr(1);
+    
+    if (winMessage === 'pc wins') {
+        return winMessage = `You Lose! ${computerProper} beats ${playerProper}`; 
+    } else {
+        return winMessage = `You Win! ${playerProper} beats ${computerProper}`;
+    }
 }
-const playerSelection = 'Rock';
+const playerSelection = 'rock';
 
 playSingleRound(playerSelection, getComputerChoice());
