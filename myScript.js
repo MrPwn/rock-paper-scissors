@@ -13,7 +13,7 @@ function getComputerChoice() {
     return choice.toLowerCase();
 }
 
-function playSingleRound(playerSelection, computerSelection) {
+function playRound(playerSelection, computerSelection) {
     let playerLower = playerSelection.toLowerCase();
     let winMessage = '';
 
@@ -45,6 +45,25 @@ function playSingleRound(playerSelection, computerSelection) {
         return winMessage = `You Win! ${playerProper} beats ${computerProper}`;
     }
 }
-const playerSelection = 'rock';
 
-playSingleRound(playerSelection, getComputerChoice());
+function game() {
+    let playerWins = 0;
+    let computerWins = 0;
+
+    for (let i = 0; i < 5; i++){
+        let winner = playRound(playerSelection, getComputerChoice());
+        if (winner.substr(0,7) === 'You Win') {
+            playerWins++;
+        } else {
+            computerWins++;
+        }
+    }
+
+    if (playerWins > computerWins) {
+        return 'You are the Rock Paper Scissors ULTIMATE CHAMPION!';
+    } else {
+        return 'You are terrible! Try again next time.'
+    }
+}
+
+game();
