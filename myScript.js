@@ -1,10 +1,3 @@
-const btn = document.querySelectorAll('button')
-
-btn.forEach((button) => {
-    button.addEventListener('click', () => {
-        playRound(button.id, getComputerChoice())
-    });
-})
 
 function getComputerChoice() {
     let choice = "";
@@ -18,7 +11,7 @@ function getComputerChoice() {
         choice = 'Scissors';
     }
     
-    return choice.toLowerCase();
+    return computerChoice.textContent = choice.toLowerCase();
 }
 
 function playRound(playerSelection, computerSelection) {
@@ -26,7 +19,7 @@ function playRound(playerSelection, computerSelection) {
     let winMessage = '';
 
     if (computerSelection === playerLower) {
-        return winMessage = 'Play again, it\'s a tie!';
+        return result.textContent = 'Play again, it\'s a tie!';
     }
     
     switch (computerSelection) {
@@ -49,10 +42,10 @@ function playRound(playerSelection, computerSelection) {
     
     if (winMessage === 'pc wins') {
         winMessage = `You Lose! ${computerProper} beats ${playerProper}`
-        return console.log(winMessage); 
+        return result.textContent = winMessage; 
     } else {
         winMessage = `You Win! ${playerProper} beats ${computerProper}`
-        return console.log(winMessage); 
+        return result.textContent = winMessage;
     }
 }
 
@@ -83,3 +76,18 @@ function playRound(playerSelection, computerSelection) {
 }
 
 game();*/
+
+const btn = document.querySelectorAll('button')
+const container = document.querySelector('div')
+
+const computerChoice = document.createElement('p')
+const result = document.createElement('div')
+
+container.appendChild(computerChoice);
+container.appendChild(result);
+
+btn.forEach((button) => {
+    button.addEventListener('click', () => {
+        playRound(button.id, getComputerChoice())
+    });
+})
