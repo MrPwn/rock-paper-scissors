@@ -1,3 +1,11 @@
+const btn = document.querySelectorAll('button')
+
+btn.forEach((button) => {
+    button.addEventListener('click', () => {
+        playRound(button.id, getComputerChoice())
+    });
+})
+
 function getComputerChoice() {
     let choice = "";
     let number = Math.floor(Math.random()*100);
@@ -40,13 +48,15 @@ function playRound(playerSelection, computerSelection) {
     let computerProper = (computerSelection.substr(0,1)).toUpperCase() + computerSelection.substr(1);
     
     if (winMessage === 'pc wins') {
-        return winMessage = `You Lose! ${computerProper} beats ${playerProper}`; 
+        winMessage = `You Lose! ${computerProper} beats ${playerProper}`
+        return console.log(winMessage); 
     } else {
-        return winMessage = `You Win! ${playerProper} beats ${computerProper}`;
+        winMessage = `You Win! ${playerProper} beats ${computerProper}`
+        return console.log(winMessage); 
     }
 }
 
-function game() {
+/*function game() {
     let playerWins = 0;
     let computerWins = 0;
 
@@ -72,4 +82,4 @@ function game() {
     }
 }
 
-game();
+game();*/
