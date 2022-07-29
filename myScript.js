@@ -42,52 +42,57 @@ function playRound(playerSelection, computerSelection) {
     
     if (winMessage === 'pc wins') {
         winMessage = `You Lose! ${computerProper} beats ${playerProper}`
-        return result.textContent = winMessage; 
+        ++computerWins;
+        result.textContent = winMessage;
+        return computerScore.textContent = `Computer Wins: ${computerWins}`; 
     } else {
         winMessage = `You Win! ${playerProper} beats ${computerProper}`
-        return result.textContent = winMessage;
+        ++playerWins;
+        result.textContent = winMessage;
+        return playerScore.textContent = `Player Wins: ${playerWins}`;
     }
 }
 
-/*function game() {
-    let playerWins = 0;
-    let computerWins = 0;
-
-    for (let i = 0; i < 5; i++){
-        let playerSelection = prompt('What\'s your selection?');
-        let winner = playRound(playerSelection, getComputerChoice());
-
-        console.log(winner);
-
-        if (winner.substr(0,7) === 'You Win') {
-            playerWins++;
-        } else if (winner.substr(0,8) === 'You Lose'){
-            computerWins++;
-        }
+function checkWinner(playerScore, computerScore) {
+    if (playerScore === 5) {
+        alert('You Win!')
+        return;
+    } else if (computerScore === 5) {
+        alert('You Lose! :\'(')
+        return;
     }
-
-    if (playerWins > computerWins) {
-        return console.log('You are the Rock Paper Scissors ULTIMATE CHAMPION!');
-    } else if (playerWins < computerWins) {
-        return console.log('You are terrible! Try again next time.');
-    } else {
-        return console.log('Well would you look at what we have here! It\'s a tie.');
-    }
+    return;
 }
 
-game();*/
+function game() {
+    btn.forEach((button) => {
+        button.addEventListener('click', () => {
+            checkWinner(playerWins, computerWins);
+            playRound(button.id, getComputerChoice())
+            return;
+        });
+    })
+    //window.location.reload();
+}
+
+let playerWins = 0;
+let computerWins = 0;
+
+alert('First to 5 wins!')
 
 const btn = document.querySelectorAll('button')
 const container = document.querySelector('div')
 
 const computerChoice = document.createElement('p')
 const result = document.createElement('div')
+const scores = document.createElement('div')
+const playerScore = document.createElement('p')
+const computerScore = document.createElement('p')
 
 container.appendChild(computerChoice);
 container.appendChild(result);
-
-btn.forEach((button) => {
-    button.addEventListener('click', () => {
-        playRound(button.id, getComputerChoice())
-    });
-})
+container.appendChild(scores);
+scores.appendChild(playerScore);
+scores.appendChild(computerScore);
+    
+game();
